@@ -284,7 +284,7 @@
 
         renderAttribute(data) {
             const computeFunc = data.compute || (v => v);
-            const isValidSensorData = data && `${this.config.sensorEntity}_${data.key}` in this._hass.states;
+            const isValidSensorData = data && ((`${this.config.sensorEntity}_${data.key}` in this._hass.states) || ('states.{$data.key}' is defined));
             const isValidAttribute = data && data.key in this.stateObj.attributes;
             const isValidEntityData = data && data.key in this.stateObj;
 
